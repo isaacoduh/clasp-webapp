@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const TransactionsPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedTransaction, setSelectedTransaction] = useState(null);
+  const [selectedTransaction, setSelectedTransaction] = useState<any>(null);
 
   // Sample transaction data
   const transactions = [
@@ -62,7 +62,7 @@ const TransactionsPage = () => {
   );
 
   // Function to handle clicking on a transaction
-  const handleTransactionClick = (transaction) => {
+  const handleTransactionClick = (transaction: any) => {
     setSelectedTransaction(transaction);
     document.body.classList.add("modal-open"); // Add the class to body for modal-open
   };
@@ -74,7 +74,7 @@ const TransactionsPage = () => {
   };
 
   // Function to handle changes in the search input
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: any) => {
     setSearchTerm(e.target.value);
   };
 
@@ -135,7 +135,7 @@ const TransactionsPage = () => {
           {/* Modal */}
           <div
             className="modal d-block"
-            tabIndex="-1"
+            tabIndex={-1}
             role="dialog"
             style={{ display: "block" }}
           >

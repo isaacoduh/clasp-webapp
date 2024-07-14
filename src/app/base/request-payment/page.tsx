@@ -68,7 +68,7 @@ const RequestPaymentComponent = () => {
   );
 };
 
-const Step1ChooseRecipient = ({ nextStep, handleRecipientChange }) => {
+const Step1ChooseRecipient = ({ nextStep, handleRecipientChange }: any) => {
   const recipients = [
     {
       name: "Herman Tran",
@@ -90,7 +90,7 @@ const Step1ChooseRecipient = ({ nextStep, handleRecipientChange }) => {
     },
   ];
 
-  const selectRecipient = (recipient) => {
+  const selectRecipient = (recipient: any) => {
     handleRecipientChange(recipient);
     nextStep();
   };
@@ -131,7 +131,7 @@ const Step2PaymentDetails = ({
   nextStep,
   prevStep,
   handlePaymentDetailsChange,
-}) => {
+}: any) => {
   const [details, setDetails] = useState({
     amount: "",
     currency: "USD",
@@ -140,7 +140,7 @@ const Step2PaymentDetails = ({
     requestedBy: "Kevin Martin",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setDetails({
       ...details,
@@ -212,10 +212,10 @@ const Step3AttachDocuments = ({
   nextStep,
   prevStep,
   handleDocumentsChange,
-}) => {
-  const [selectedFiles, setSelectedFiles] = useState([]);
+}: any) => {
+  const [selectedFiles, setSelectedFiles] = useState<any[]>([]);
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e: any) => {
     setSelectedFiles([...selectedFiles, ...e.target.files]);
   };
 
@@ -250,10 +250,10 @@ const Step4ConfirmTransfer = ({
   paymentDetails,
   documents,
   prevStep,
-}) => {
+}: any) => {
   const [verificationCode, setVerificationCode] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setVerificationCode(e.target.value);
   };
 

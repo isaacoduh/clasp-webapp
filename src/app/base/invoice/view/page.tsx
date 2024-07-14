@@ -4,7 +4,7 @@ import React from "react";
 import Head from "next/head";
 
 // Sample Invoice Data
-const sampleInvoiceData = {
+const sampleInvoiceData: any = {
   invoiceNumber: "INV-2023-001",
   recipientName: "John Doe",
   dueDate: "2023-08-31",
@@ -16,9 +16,12 @@ const sampleInvoiceData = {
 };
 
 // Calculate subtotal
-sampleInvoiceData.subtotal = sampleInvoiceData.items.reduce((total, item) => {
-  return total + item.quantity * item.price;
-}, 0);
+sampleInvoiceData.subtotal = sampleInvoiceData.items.reduce(
+  (total: any, item: any) => {
+    return total + item.quantity * item.price;
+  },
+  0
+);
 
 // Calculate total (considering any taxes or discounts)
 sampleInvoiceData.total = sampleInvoiceData.subtotal;
@@ -89,7 +92,7 @@ const ViewInvoice = () => {
               </tr>
             </thead>
             <tbody>
-              {sampleInvoiceData.items.map((item, index) => (
+              {sampleInvoiceData.items.map((item: any, index: any) => (
                 <tr key={index}>
                   <td>{item.itemName}</td>
                   <td>{item.quantity}</td>

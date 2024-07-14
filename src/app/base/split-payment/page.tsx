@@ -5,15 +5,15 @@ import Head from "next/head";
 
 const SplitPaymentPage = () => {
   const [totalAmount, setTotalAmount] = useState("");
-  const [recipients, setRecipients] = useState([]);
+  const [recipients, setRecipients] = useState<any[]>([]);
   const [evidenceDocument, setEvidenceDocument] = useState(null);
   const [currentStep, setCurrentStep] = useState(1);
-  const [paymentDetails, setPaymentDetails] = useState(null);
+  const [paymentDetails, setPaymentDetails] = useState<any>(null);
 
   useEffect(() => {
     // Fetch payment details based on `id` from backend API
     // Replace with actual API call
-    const mockPaymentDetails = {
+    const mockPaymentDetails: any = {
       totalAmount: 1000,
       recipients: [
         { email: "recipient1@example.com", share: 300 },
@@ -25,7 +25,7 @@ const SplitPaymentPage = () => {
     setPaymentDetails(mockPaymentDetails);
   }, []);
 
-  const handleFileUpload = (event) => {
+  const handleFileUpload = (event: any) => {
     const file = event.target.files[0];
     setEvidenceDocument(file);
   };
@@ -34,13 +34,13 @@ const SplitPaymentPage = () => {
     setRecipients([...recipients, { email: "", share: "" }]);
   };
 
-  const handleRecipientChange = (index, key, value) => {
+  const handleRecipientChange = (index: any, key: any, value: any) => {
     const updatedRecipients = [...recipients];
     updatedRecipients[index][key] = value;
     setRecipients(updatedRecipients);
   };
 
-  const handleSubmitRequest = (event) => {
+  const handleSubmitRequest = (event: any) => {
     event.preventDefault();
     // Implement backend logic to handle form submission
     console.log("Form submitted with:", {
@@ -155,7 +155,7 @@ const SplitPaymentPage = () => {
           <div className="mt-4">
             <h4>Recipients:</h4>
             <ul className="list-group">
-              {paymentDetails.recipients.map((recipient, index) => (
+              {paymentDetails.recipients.map((recipient: any, index: any) => (
                 <li key={index} className="list-group-item">
                   <div>Email: {recipient.email}</div>
                   <div>Share Amount: ${recipient.share}</div>

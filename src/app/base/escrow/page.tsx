@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import Head from "next/head";
 
 // SearchUser component for searching a user
-const SearchUser = ({ onSelectUser }) => {
+const SearchUser = ({ onSelectUser }: any) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = () => {
     // Mock search results - replace with actual API call
-    const mockResults = [
+    const mockResults: any = [
       { id: 1, name: "John Doe" },
       { id: 2, name: "Jane Smith" },
       { id: 3, name: "Mike Johnson" },
@@ -18,7 +18,7 @@ const SearchUser = ({ onSelectUser }) => {
     setSearchResults(mockResults);
   };
 
-  const handleSelectUser = (user) => {
+  const handleSelectUser = (user: any) => {
     onSelectUser(user);
     setSearchTerm("");
     setSearchResults([]);
@@ -40,7 +40,7 @@ const SearchUser = ({ onSelectUser }) => {
         </button>
       </div>
       <ul className="list-group">
-        {searchResults.map((user) => (
+        {searchResults.map((user: any) => (
           <li
             key={user.id}
             className="list-group-item d-flex justify-content-between align-items-center"
@@ -60,10 +60,10 @@ const SearchUser = ({ onSelectUser }) => {
 };
 
 // AddMoneyToEscrow component for adding money to escrow session
-const AddMoneyToEscrow = ({ onAddMoney }) => {
+const AddMoneyToEscrow = ({ onAddMoney }: any) => {
   const [amount, setAmount] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     onAddMoney(parseFloat(amount));
     setAmount("");
@@ -95,10 +95,10 @@ const AddMoneyToEscrow = ({ onAddMoney }) => {
 };
 
 // AddNotes component for adding notes to escrow session
-const AddNotes = ({ onAddNotes }) => {
+const AddNotes = ({ onAddNotes }: any) => {
   const [notes, setNotes] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     onAddNotes(notes);
     setNotes("");
@@ -115,7 +115,7 @@ const AddNotes = ({ onAddNotes }) => {
           <textarea
             className="form-control"
             id="notes"
-            rows="3"
+            rows={3}
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             required
@@ -130,7 +130,7 @@ const AddNotes = ({ onAddNotes }) => {
 };
 
 // AgreeToRelease component for agreeing to release payments
-const AgreeToRelease = ({ onAgreeRelease }) => {
+const AgreeToRelease = ({ onAgreeRelease }: any) => {
   const handleAgree = () => {
     onAgreeRelease();
   };
@@ -154,15 +154,15 @@ const EscrowDemoPage = () => {
   const [escrowNotes, setEscrowNotes] = useState("");
   const [agreedToRelease, setAgreedToRelease] = useState(false);
 
-  const handleSelectUser = (user) => {
+  const handleSelectUser = (user: any) => {
     setSelectedUser(user);
   };
 
-  const handleAddMoneyToEscrow = (amount) => {
+  const handleAddMoneyToEscrow = (amount: any) => {
     setEscrowAmount((prevAmount) => prevAmount + amount);
   };
 
-  const handleAddNotes = (notes) => {
+  const handleAddNotes = (notes: any) => {
     setEscrowNotes(notes);
   };
 

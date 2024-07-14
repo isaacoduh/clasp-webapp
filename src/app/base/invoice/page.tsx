@@ -13,7 +13,7 @@ const CreateInvoice = () => {
     description: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setInvoiceData((prevData) => ({
       ...prevData,
@@ -21,11 +21,11 @@ const CreateInvoice = () => {
     }));
   };
 
-  const handleItemChange = (index, e) => {
+  const handleItemChange = (index: any, e: any) => {
     const { name, value } = e.target;
-    const newItems = [...invoiceData.items];
+    const newItems: any[] = [...invoiceData.items];
     newItems[index] = { ...newItems[index], [name]: value };
-    setInvoiceData((prevData) => ({
+    setInvoiceData((prevData: any) => ({
       ...prevData,
       items: newItems,
       subtotal: calculateSubtotal(newItems),
@@ -34,24 +34,24 @@ const CreateInvoice = () => {
   };
 
   const handleAddItem = () => {
-    setInvoiceData((prevData) => ({
+    setInvoiceData((prevData: any) => ({
       ...prevData,
       items: [...prevData.items, { itemName: "", quantity: 1, price: 0 }],
     }));
   };
 
-  const calculateSubtotal = (items) => {
-    return items.reduce((total, item) => {
+  const calculateSubtotal = (items: any) => {
+    return items.reduce((total: any, item: any) => {
       return total + item.quantity * item.price;
     }, 0);
   };
 
-  const calculateTotal = (subtotal) => {
+  const calculateTotal = (subtotal: any) => {
     // Implement any tax or additional fees calculation if needed
     return subtotal;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     // Implement logic to save invoice data (e.g., API call)
     console.log("Invoice Data:", invoiceData);
@@ -125,14 +125,14 @@ const CreateInvoice = () => {
                 className="form-control"
                 id="description"
                 name="description"
-                rows="3"
+                rows={3}
                 value={invoiceData.description}
                 onChange={handleChange}
               ></textarea>
             </div>
             <hr />
             <h5>Invoice Items</h5>
-            {invoiceData.items.map((item, index) => (
+            {invoiceData.items.map((item: any, index: any) => (
               <div key={index} className="mb-3">
                 <div className="row">
                   <div className="col">

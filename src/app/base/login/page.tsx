@@ -8,7 +8,7 @@ const Login = () => {
             <h1>Welcome to Clasp Finance</h1>
             <p>Manage your finances with ease and security.</p>
             <p>
-              Don't have an account?{" "}
+              Don not have an account?{" "}
               <Link href="/register">
                 <span className="text-white text-bold">Register here</span>
               </Link>

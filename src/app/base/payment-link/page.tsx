@@ -8,7 +8,7 @@ const PaymentLinkForm = () => {
   const [description, setDescription] = useState("");
   const [paymentLink, setPaymentLink] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     // Generate payment link logic - replace with actual implementation
     const generatedLink = `https://example.com/pay?recipient=${recipientEmail}&amount=${amount}&description=${encodeURIComponent(
@@ -64,7 +64,7 @@ const PaymentLinkForm = () => {
               <textarea
                 className="form-control"
                 id="description"
-                rows="3"
+                rows={3}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required

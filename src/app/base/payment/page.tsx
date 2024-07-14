@@ -78,7 +78,7 @@ const PaymentForm = () => {
                       onChange={handleSenderAccountChange}
                       required
                     >
-                      <option value="">Select sender's account</option>
+                      <option value="">Select sender &apos;s account</option>
                       {accounts.map((acc) => (
                         <option key={acc.id} value={acc.accountNumber}>
                           {acc.accountName} - {acc.accountNumber}
@@ -160,7 +160,7 @@ const PaymentForm = () => {
                     <textarea
                       className="form-control"
                       id="description"
-                      rows="3"
+                      rows={3}
                       placeholder="Enter payment description"
                       value={description}
                       onChange={handleDescriptionChange}

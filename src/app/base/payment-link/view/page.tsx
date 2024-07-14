@@ -3,17 +3,16 @@
 import React, { useState } from "react";
 import Head from "next/head";
 
-interface RecipientPaymentLinkProps {
+type Props = {
   recipientEmail?: string;
   amount?: number;
   description?: string;
-}
+};
 
-const RecipientPaymentLink: React.FC<RecipientPaymentLinkProps> = ({
-  recipientEmail = "ufuomaoduh@mail.com",
-  amount = 300,
-  description = "Basically",
-}) => {
+const RecipientPaymentLink = () => {
+  const recipientEmail = "ufuomaoduh@mail.com";
+  const amount = 300;
+  const description = "Basically";
   const [paymentStatus, setPaymentStatus] = useState("pending"); // 'pending', 'paid', 'cancelled'
 
   const handlePayWithWallet = () => {
