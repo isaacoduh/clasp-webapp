@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.css";
 import BootstrapClient from "@/components/BootstrapClient";
+import { Toaster } from "react-hot-toast";
+import { AuthContextProvider } from "@/context/AuthContext/AuthContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -15,10 +17,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        {children} <BootstrapClient />
-      </body>
-    </html>
+    <AuthContextProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          {children} <BootstrapClient />
+          <Toaster />
+        </body>
+      </html>
+    </AuthContextProvider>
   );
 }
