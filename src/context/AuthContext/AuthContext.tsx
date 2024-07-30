@@ -1,5 +1,5 @@
 "use client";
-import {
+import React, {
   createContext,
   ReactNode,
   useContext,
@@ -15,14 +15,29 @@ export type Props = {
   children: ReactNode;
 };
 
-const AuthContext = createContext({});
+export type User = {
+  id: string;
+  username: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type AuthContextType = {
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  logout: () => void;
+};
+
+// const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext({} as any);
 export const AuthContextProvider = ({ children }: Props) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<any>({});
   const router = useRouter();
 
   useEffect(() => {
     const ls = new SecureLS();
-    const storedUser = ls.get("user");
+    const storedUser: User | null = ls.get("user");
     const token = ls.get("token");
 
     if (!storedUser || !token) {
@@ -61,13 +76,13 @@ export const AuthContextProvider = ({ children }: Props) => {
     }
   };
 
-  const fetchUser = async () => {
-    await axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`)
-      .then((response) => {
-        console.log(response);
-      });
-  };
+  //   const fetchUser = async () => {
+  //     await axios
+  //       .get(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`)
+  //       .then((response) => {
+  //         console.log(response);
+  //       });
+  //   };
 
   const logout = () => {
     const ls = new SecureLS();
@@ -76,7 +91,7 @@ export const AuthContextProvider = ({ children }: Props) => {
     router.push("/auth/signin");
   };
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, logout }}>
       {children}
     </AuthContext.Provider>
   );

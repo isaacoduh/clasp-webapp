@@ -39,7 +39,6 @@ export default function SignIn() {
       })
       .catch((error) => {
         setLoading(false);
-        console.log(error.response?.data?.message);
         toast.error(error?.response?.data?.message, { duration: 3000 });
       });
   };
