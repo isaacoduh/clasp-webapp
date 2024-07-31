@@ -50,7 +50,7 @@ export default function SignUp() {
             <p>Manage your finances with ease and security.</p>
             <p>
               Already have an account?{" "}
-              <Link href="/login">
+              <Link href="/auth/signin">
                 <span className="text-white">Login here</span>
               </Link>
             </p>

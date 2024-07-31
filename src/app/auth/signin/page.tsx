@@ -52,7 +52,7 @@ export default function SignIn() {
             <p>Manage your finances with ease and security.</p>
             <p>
               Don not have an account?{" "}
-              <Link href="/register">
+              <Link href="/auth/signup">
                 <span className="text-white text-bold">Register here</span>
               </Link>
             </p>
