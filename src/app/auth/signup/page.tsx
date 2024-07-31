@@ -51,7 +51,9 @@ export default function SignUp() {
             <p>
               Already have an account?{" "}
               <Link href="/auth/signin">
-                <span className="text-white">Login here</span>
+                <strong>
+                  <span className="text-white">Login here</span>
+                </strong>
               </Link>
             </p>
           </div>

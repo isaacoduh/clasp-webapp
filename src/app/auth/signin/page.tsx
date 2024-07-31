@@ -53,7 +53,9 @@ export default function SignIn() {
             <p>
               Don not have an account?{" "}
               <Link href="/auth/signup">
-                <span className="text-white text-bold">Register here</span>
+                <strong>
+                  <span className="text-white text-bold">Register here</span>
+                </strong>
               </Link>
             </p>
           </div>
