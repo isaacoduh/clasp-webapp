@@ -99,6 +99,11 @@ export default function Dashboard() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
+                <Link href="/profile" legacyBehavior>
+                  <a className="nav-link">Profile</a>
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link href="#" legacyBehavior>
                   <button
                     className="nav-link"
