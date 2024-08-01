@@ -1,7 +1,11 @@
 "use client";
+import AccountModal from "@/components/Accounts/AccountModal";
 import { useAuthContext } from "@/context/AuthContext/AuthContext";
+import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import SecureLS from "secure-ls";
 
 const getTimeOfDayGreeting = () => {
   const currentHour = new Date().getHours();
@@ -18,6 +22,41 @@ export default function Dashboard() {
   const greeting = getTimeOfDayGreeting();
   const { user, logout } = useAuthContext();
   const router = useRouter();
+  const ls = new SecureLS();
+  const token = ls.get("token");
+  const [accounts, setAccounts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+
+  const fetchDashboardData = async () => {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/dashboard`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    setAccounts(response?.data?.data?.accounts);
+
+    // console.log(response?.data?.data?.accounts);
+  };
+
+  const createAccount = async (accountData: any) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/accounts/create`,
+        accountData,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (response.status === 201) {
+        fetchDashboardData();
+        setShowModal(false);
+      }
+    } catch (error) {
+      console.log("Error creating account: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
   return (
     <div className="vh-100">
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -67,7 +106,54 @@ export default function Dashboard() {
           </div>
         </div>
         <p className="lead">Welcome to your dashboard.</p>
+        {accounts && accounts.length ? (
+          <div>
+            <div className="d-flex justify-content-between">
+              <div>You have {accounts.length} accounts</div>
+              <button
+                className="btn btn-primary"
+                onClick={() => setShowModal(true)}
+              >
+                Create Account
+              </button>
+            </div>
+            <hr />
+            <div className="row mb-4">
+              {accounts.map((account, index) => (
+                <div className="col-md-4 mb-4" key={index}>
+                  <div className="card">
+                    <div className="card-body">
+                      <h5>Balance: {account?.account_balance}</h5>
+                      <p className="card-title">
+                        Account:{" "}
+                        {account?.currency
+                          ? account.currency.toUpperCase()
+                          : ""}
+                      </p>
+                      <p>Account Number: {account?.account_number}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div>
+            <p>No accounts yet</p>{" "}
+            <button
+              className="btn btn-primary"
+              onClick={() => setShowModal(true)}
+            >
+              Create Account
+            </button>
+          </div>
+        )}
       </div>
+      <AccountModal
+        show={showModal}
+        handleClose={() => setShowModal(false)}
+        createAccount={createAccount}
+      />
     </div>
   );
 }
