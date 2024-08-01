@@ -31,15 +31,15 @@ export default function SignIn() {
         if (response?.data?.success === true) {
           ls.set("user", response?.data?.user);
           ls.set("token", response?.data?.token);
-          toast.success(response?.data?.message, { duration: 4000 });
+          toast.success(response?.data?.message, { duration: 2000 });
           setUserDetails({ email: "", password: "" });
           setLoading(false);
-          setTimeout(() => router.push("/dashboard"), 3000);
+          setTimeout(() => router.push("/dashboard"), 1);
         }
       })
       .catch((error) => {
         setLoading(false);
-        toast.error(error?.response?.data?.message, { duration: 3000 });
+        toast.error(error?.response?.data?.message, { duration: 2000 });
       });
   };
 
