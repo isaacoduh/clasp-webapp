@@ -18,13 +18,19 @@ const getTimeOfDayGreeting = () => {
   }
 };
 
+interface Account {
+  account_balance: string;
+  account_number: string;
+  currency: string;
+}
+
 export default function Dashboard() {
   const greeting = getTimeOfDayGreeting();
   const { user, logout } = useAuthContext();
   const router = useRouter();
   const ls = new SecureLS();
   const token = ls.get("token");
-  const [accounts, setAccounts] = useState([]);
+  const [accounts, setAccounts] = useState<Account[]>([]);
   const [showModal, setShowModal] = useState(false);
 
   const fetchDashboardData = async () => {
