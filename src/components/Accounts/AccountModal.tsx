@@ -13,15 +13,15 @@ const AccountModal = ({ show, handleClose, createAccount }: any) => {
 
   return (
     <div
-      className={`modal ${
-        show ? "d-block modal-backdrop fade show" : "d-none"
-      }`}
+      className={`modal ${show ? "d-block modal-backdrop fade" : "d-none"}`}
       tabIndex={-1}
+      role="dialog"
+      style={{ display: "block", opacity: 0.95 }}
     >
-      <div className="modal-dialog">
+      <div className="modal-dialog modal-dialog-centered" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Create A Account</h5>
+            <h5 className="modal-title">Create An Account</h5>
             <button
               type="button"
               className="btn-close"
