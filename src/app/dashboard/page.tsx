@@ -57,10 +57,17 @@ export default function Dashboard() {
           </div>
         </div>
       </nav>
-      <p>Wlecome to Dashboard</p>
-      <p>
-        {greeting} {user?.username}
-      </p>
+      <div className="container p-4">
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h3 className="">
+            {greeting}, {user?.username}
+          </h3>
+          <div className="wallet-id">
+            <h5>Wallet ID: </h5>
+          </div>
+        </div>
+        <p className="lead">Welcome to your dashboard.</p>
+      </div>
     </div>
   );
 }
