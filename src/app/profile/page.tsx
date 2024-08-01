@@ -88,7 +88,7 @@ const UserProfile = () => {
       lastname,
       gender,
       marital_status,
-      date_of_birth: formatDate(date_of_birth),
+      date_of_birth: formatISODateToInput(date_of_birth),
       country,
       state,
       city,
