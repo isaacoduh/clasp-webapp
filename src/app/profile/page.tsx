@@ -291,7 +291,9 @@ const UserProfile = () => {
                     >
                       <option>Select Document Type</option>
                       <option value="passport">Passport</option>
-                      <option value="drivers_license">Driver's License</option>
+                      <option value="drivers_license">
+                        Driver&apos;s License
+                      </option>
                     </select>
                   </div>
                   <div className="mb-3">
