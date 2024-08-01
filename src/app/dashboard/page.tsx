@@ -27,11 +27,26 @@ interface Account {
 export default function Dashboard() {
   const greeting = getTimeOfDayGreeting();
   const { user, logout } = useAuthContext();
+
+  const [token, setToken] = useState<string | null>(null);
   const router = useRouter();
-  const ls = new SecureLS();
-  const token = ls.get("token");
+  const [ls, setLs] = useState<SecureLS | null>(null);
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    // Initialize SecureLS and get token only on client side
+    const secureLS = new SecureLS();
+    setLs(secureLS);
+    const tokenFromStorage = secureLS.get("token");
+    setToken(tokenFromStorage);
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      fetchDashboardData();
+    }
+  }, [token]);
 
   const fetchDashboardData = async () => {
     const response = await axios.get(
@@ -60,9 +75,9 @@ export default function Dashboard() {
     }
   };
 
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
+  // useEffect(() => {
+  //   fetchDashboardData();
+  // }, []);
   return (
     <div className="vh-100">
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
